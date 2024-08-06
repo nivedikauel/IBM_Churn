@@ -1,10 +1,11 @@
 from flask import Flask, request, render_template
 import joblib
 import pandas as pd
+import xgboost as xgb
 
 app = Flask(__name__)
 
-# Load the trained model
+# Load the trained model and fitted scaler
 model = joblib.load('best_xgb_model.pkl')
 scaler = joblib.load('scaler.pkl')
 
@@ -117,7 +118,8 @@ def index():
 
             # Create a dataframe with the input data
             input_data = pd.DataFrame([input_features])
-            input_data_scaled = scaler.fit_transform(input_data)
+            input_data_scaled = scaler.transform(input_data)
+            
             # Make prediction
             prediction = model.predict(input_data_scaled)[0]
             probability = model.predict_proba(input_data_scaled)[0][1]
