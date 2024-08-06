@@ -1,0 +1,16 @@
+body {
+    background-color: #fffdd0; /* Light cream color */
+}
+
+.container {
+    background-color: #ffffff; /* White background for the form container */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 50%; /* Reduce the width of the container */
+    margin: auto; /* Center the container */
+}
+
+.small-input {
+    max-width: 150px; /* Adjust the width of specific input fields */
+}
