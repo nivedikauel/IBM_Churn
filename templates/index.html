@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Churn Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">IBM Telcommunication Churn Prediction</h1>
+        <form action="/" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="SeniorCitizen">Senior Citizen:</label><br>
+                <select id="SeniorCitizen" name="SeniorCitizen" class="form-select" aria-label="Senior Citizen" required>
+                    <option selected disabled>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Partner">Partner:</label><br>
+                <select id="Partner" name="Partner" class="form-select" aria-label="Partner" required>
+                    <option selected disabled>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Dependents">Dependents:</label><br>
+                <select id="Dependents" name="Dependents" class="form-select" aria-label="Dependents" required>
+                    <option selected disabled>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tenure">Tenure:</label><br>
+                <input type="number" id="tenure" name="tenure" class="form-control small-input" required>
+            </div>
+            <div class="form-group">
+                <label for="PaperlessBilling">Paperless Billing:</label><br>
+                <select id="PaperlessBilling" name="PaperlessBilling" class="form-select" aria-label="Paperless Billing" required>
+                    <option selected disabled>Select</option>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="MonthlyCharges">Monthly Charges:</label><br>
+                <input type="number" step="0.01" id="MonthlyCharges" name="MonthlyCharges" class="form-control small-input" required>
+            </div>
+            <div class="form-group">
+                <label for="TotalCharges">Total Charges:</label><br>
+                <input type="number" step="0.01" id="TotalCharges" name="TotalCharges" class="form-control small-input" required>
+            </div>
+            <div class="form-group">
+                <label for="MultipleLines">Multiple Lines:</label><br>
+                <select id="MultipleLines" name="MultipleLines" class="form-select" aria-label="Multiple Lines" required>
+                    <option selected disabled>Select</option>
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No phone service">No phone service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="InternetService">Internet Service:</label><br>
+                <select id="InternetService" name="InternetService" class="form-select" aria-label="Internet Service" required>
+                    <option selected disabled>Select</option>
+                    <option value="DSL">DSL</option>
+                    <option value="Fiber optic">Fiber optic</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OnlineSecurity">Online Security:</label><br>
+                <select id="OnlineSecurity" name="OnlineSecurity" class="form-select" aria-label="Online Security" required>
+                    <option selected disabled>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>                    
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OnlineBackup">Online Backup:</label><br>
+                <select id="OnlineBackup" name="OnlineBackup" class="form-select" aria-label="Online Backup" required>
+                    <option selected disabled>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</opion>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="DeviceProtection">Device Protection:</label><br>
+                <select id="DeviceProtection" name="DeviceProtection" class="form-select" aria-label="Device Protection" required>
+                    <option selected disabled>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TechSupport">Tech Support:</label><br>
+                <select id="TechSupport" name="TechSupport" class="form-select" aria-label="Tech Support" required>
+                    <option selected disabled>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="StreamingTV">Streaming TV:</label><br>
+                <select id="StreamingTV" name="StreamingTV" class="form-select" aria-label="Streaming TV" required>
+                    <option selected disabled>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="StreamingMovies">Streaming Movies:</label><br>
+                <select id="StreamingMovies" name="StreamingMovies" class="form-select" aria-label="Streaming Movies" required>
+                    <option selected disabled>Select</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Contract">Contract:</label><br>
+                <select id="Contract" name="Contract" class="form-select" aria-label="Contract" required>
+                    <option selected disabled>Select</option>
+                    <option value="Month-to-month">Month-to-month</option>
+                    <option value="One year">One year</option>
+                    <option value="Two year">Two year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PaymentMethod">Payment Method:</label><br>
+                <select id="PaymentMethod" name="PaymentMethod" class="form-select" aria-label="Payment Method" required>
+                    <option selected disabled>Select</option>
+                    <option value="Bank transfer (automatic)">Bank transfer (automatic)</option>
+                    <option value="Credit card (automatic)">Credit card (automatic)</option>
+                    <option value="Electronic check">Electronic check</option>
+                    <option value="Mailed check">Mailed check</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Plan">Plan:</label><br>
+                <select id="Plan" name="Plan" class="form-select" aria-label="Plan" required>
+                    <option selected disabled>Select</option>
+                    <option value="Normal Plan">Normal Plan</option>
+                    <option value="add-ons">Add-ons</option>
+                    <option value="discount plan">Discount plan</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+    </div>
+</body>
+</html>

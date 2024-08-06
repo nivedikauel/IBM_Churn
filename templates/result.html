@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Churn Prediction Result</h1>
+        <div class="card mt-4">
+            <div class="card-body">
+                <h2 class="card-title">Prediction: {{ 'Churn' if prediction == 1 else 'No Churn' }}</h2>
+                <p class="card-text">Probability of Churn: {{ "{:.2f}".format(probability * 100) }}%</p>
+                <a href="/" class="btn btn-primary">Go Back</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
