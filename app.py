@@ -1,11 +1,10 @@
 from flask import Flask, request, render_template
 import joblib
 import pandas as pd
-import xgboost as xgb
 
 app = Flask(__name__)
 
-# Load the trained model and fitted scaler
+# Load the trained model and scaler
 model = joblib.load('best_xgb_model.pkl')
 scaler = joblib.load('scaler.pkl')
 
@@ -118,20 +117,15 @@ def index():
 
             # Create a dataframe with the input data
             input_data = pd.DataFrame([input_features])
-            input_data_scaled = scaler.transform(input_data)
-            
+
+            # Scale the input data
+            scaled_data = scaler.transform(input_data)
+
             # Make prediction
-            prediction = model.predict(input_data_scaled)[0]
-            probability = model.predict_proba(input_data_scaled)[0][1]
+            prediction = model.predict(scaled_data)[0]
+            probability = model.predict_proba(scaled_data)[0][1]
 
-            if prediction == 1:
-                churn_message = "Customer is leaving our services"
-            else:
-                churn_message = "Customer is not leaving our services"
-
-            print(churn_message)
-
-            return render_template('result.html', prediction=prediction, probability=probability, churn_message=churn_message)
+            return render_template('result.html', prediction=prediction, probability=probability)
         
         except Exception as e:
             return str(e)
